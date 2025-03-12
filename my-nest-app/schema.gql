@@ -1,0 +1,23 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateFeatureInput {
+  type: String!
+}
+
+type FeatureTypeOutput {
+  createdAt: String
+  id: ID!
+  status: Boolean!
+  type: String!
+  updatedAt: String
+}
+
+type Mutation {
+  createFeatureType(input: CreateFeatureInput!): FeatureTypeOutput!
+}
+
+type Query {
+  getFeatureTypes: [FeatureTypeOutput!]!
+}
