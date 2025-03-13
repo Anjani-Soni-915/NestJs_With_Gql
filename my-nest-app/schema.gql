@@ -2,22 +2,75 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateDeviceInput {
+  brand: String!
+  deviceVersion: String!
+  driverId: Float!
+  featureTypeId: Float!
+}
+
+input CreateDriverInput {
+  driverType: String!
+}
+
 input CreateFeatureInput {
   type: String!
 }
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DeviceOutput {
+  brand: String!
+  createdAt: DateTime
+  deviceVersion: String!
+  driver: DriverOutput
+  driverId: Float!
+  featureType: FeatureTypeOutput
+  featureTypeId: Float!
+  id: ID!
+  status: Boolean!
+  updatedAt: DateTime
+}
+
+type DriverOutput {
+  createdAt: DateTime
+  driverType: String!
+  id: ID!
+  status: Boolean!
+  updatedAt: DateTime
+}
+
 type FeatureTypeOutput {
-  createdAt: String
+  createdAt: DateTime
   id: ID!
   status: Boolean!
   type: String!
-  updatedAt: String
+  updatedAt: DateTime
+}
+
+type FeatureTypeResponse {
+  count: Int!
+  data: [FeatureTypeOutput!]!
 }
 
 type Mutation {
+  createDevice(input: CreateDeviceInput!): DeviceOutput!
+  createDriver(input: CreateDriverInput!): DriverOutput!
   createFeatureType(input: CreateFeatureInput!): FeatureTypeOutput!
+  deleteFeaturetype(id: Int!): FeatureTypeOutput!
+  updateFeatureType(id: Int!, input: UpdateFeatureInput!): FeatureTypeOutput!
 }
 
 type Query {
-  getFeatureTypes: [FeatureTypeOutput!]!
+  getAlldevices: [DeviceOutput!]!
+  getFeatureTypeById(id: Int!): FeatureTypeOutput!
+  getFeatureTypes: FeatureTypeResponse!
+}
+
+input UpdateFeatureInput {
+  status: Boolean
+  type: String
 }

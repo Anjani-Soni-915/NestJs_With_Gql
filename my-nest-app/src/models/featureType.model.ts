@@ -1,4 +1,5 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
+import { Device } from './device.model';
 
 @Table({
   tableName: 'feature_types',
@@ -27,16 +28,7 @@ export class FeatureType extends Model {
   })
   status: boolean;
 
-  // @HasMany(() => Device)
-  // devices: Device[];
-
-  // @ForeignKey(() => FeatureType)
-  // @Column({
-  //   type: DataType.INTEGER,
-  //   allowNull: false,
-  // })
-  // featureTypeId: number;
-
-  // @BelongsTo(() => FeatureType)
-  // featureType: FeatureType;
+  // Association
+  @HasMany(() => Device)
+  devices: Device[];
 }

@@ -1,4 +1,5 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
+import { Device } from './device.model';
 
 @Table({
   tableName: 'driver',
@@ -27,9 +28,7 @@ export class Driver extends Model {
   })
   status: boolean;
 
-  // @HasMany(() => Device)
-  // devices: Device[];
-
-  // @BelongsTo(() => FeatureType)
-  // featureType: FeatureType;
+  // Association
+  @HasMany(() => Device)
+  devices: Device[];
 }

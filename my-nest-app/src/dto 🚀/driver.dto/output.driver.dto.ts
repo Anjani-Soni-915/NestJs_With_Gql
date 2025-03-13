@@ -1,12 +1,12 @@
 import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
 
 @ObjectType()
-export class FeatureTypeOutput {
+export class DriverOutput {
   @Field(() => ID)
   id: number;
 
   @Field()
-  type: string;
+  driverType: string;
 
   @Field()
   status: boolean;
@@ -19,10 +19,10 @@ export class FeatureTypeOutput {
 }
 
 @ObjectType()
-export class FeatureTypeResponse {
+export class DriverResponse {
   @Field(() => Int)
   count: number;
 
-  @Field(() => [FeatureTypeOutput])
-  data: FeatureTypeOutput[];
+  @Field(() => [DriverOutput])
+  data: DriverOutput[];
 }

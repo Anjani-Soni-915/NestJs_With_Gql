@@ -1,7 +1,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 
 @InputType()
-export class CreateFeatureInput {
+export class CreateDriverInput {
   @Field()
-  type: string;
+  driverType: string;
 }

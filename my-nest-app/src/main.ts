@@ -2,11 +2,32 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
 import { sequelize } from './models';
+import { ValidationPipe, BadRequestException } from '@nestjs/common';
 
 dotenv.config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // app.useGlobalPipes(
+  //   new ValidationPipe({
+  //     whitelist: true,
+  //     forbidNonWhitelisted: true,
+  //     transform: true,
+  //     validationError: { target: false },
+  //     exceptionFactory: (errors) => {
+  //       return new BadRequestException({
+  //         message: 'Validation failed',
+  //         errors: errors.map((error) => ({
+  //           field: error.property,
+  //           messages: error.constraints
+  //             ? Object.values(error.constraints)
+  //             : ['Invalid value'],
+  //         })),
+  //       });
+  //     },
+  //   }),
+  // );
 
   try {
     await sequelize.authenticate();

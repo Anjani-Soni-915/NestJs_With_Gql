@@ -4,6 +4,8 @@ import {
   Model,
   DataType,
   ForeignKey,
+  HasMany,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { FeatureType } from './featureType.model';
 import { Driver } from './driver.model';
@@ -54,9 +56,10 @@ export class Device extends Model {
   })
   status: boolean;
 
-  // @HasMany(() => Device)
-  // devices: Device[];
+  // Association
+  @BelongsTo(() => Driver)
+  driver: Driver;
 
-  // @BelongsTo(() => FeatureType)
-  // featureType: FeatureType;
+  @BelongsTo(() => FeatureType)
+  featureType: FeatureType;
 }
